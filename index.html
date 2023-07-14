@@ -1,0 +1,333 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.0/css/bootstrap.min.css" />
+</head>
+
+<body>
+
+  <div class="container text-center">
+    <div class="row align-items-start">
+      <div class="col">
+        <div class="row container border">
+          <button class="btn btn-dark btn-block" data-bs-toggle="modal" data-bs-target="#listModal">Liste Ekle</button>
+          <div class="col-md-1">
+            <h1>Listeler</h1>
+          </div>
+          <div class="container">
+            <ol class="list-group list-group-numbered" id="listGroup">
+              <li class="list-group-item d-flex justify-content-between align-items-start">
+                <div class="ms-2 me-auto">
+                  Cras justo odio
+                </div>
+                <button class="btn btn-danger delete-button">Sil</button>
+                <button class="btn btn-warning edit-button" data-bs-toggle="modal" data-bs-target="#editModal-1">Düzenle</button>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-start">
+                <div class="ms-2 me-auto">
+                  Cras justo odio
+                </div>
+                <button class="btn btn-danger delete-button">Sil</button>
+                <button class="btn btn-warning edit-button" data-bs-toggle="modal" data-bs-target="#editModal-2">Düzenle</button>
+              </li>
+              <li class="list-group-item d-flex justify-content-between align-items-start">
+                <div class="ms-2 me-auto">
+                  Cras justo odio
+                </div>
+                <button class="btn btn-danger delete-button">Sil</button>
+                <button class="btn btn-warning edit-button" data-bs-toggle="modal" data-bs-target="#editModal-3">Düzenle</button>
+              </li>
+            </ol>
+          </div>
+        </div>
+      </div>
+      <div class="col">
+        <div class="row align-items-start">
+          <span class="text-start fw-bold">Liste Elemanları</span>
+        </div>
+        <div class="d-flex flex-row bd-highlight mb-3">
+          <input type="text" placeholder="Eleman Ekleyin" /><button class="btn btn-primary" data-bs-toggle="modal" data-bs-target="#exampleModal">Eleman Ekle</button>
+        </div>
+        <div class="row align-items-start">
+          <div class="list-group row align-items-start" id="listItems">
+            <label class="list-group-item">
+              <input class="form-check-input me-1" type="checkbox" value="">
+              First checkbox
+              <button class="btn btn-danger delete-button">Sil</button>
+              <button class="btn btn-warning edit-button" data-bs-toggle="modal" data-bs-target="#editModal-4">Düzenle</button>
+            </label>
+            <label class="list-group-item">
+              <input class="form-check-input me-1" type="checkbox" value="">
+              Second checkbox
+              <button class="btn btn-danger delete-button">Sil</button>
+              <button class="btn btn-warning edit-button" data-bs-toggle="modal" data-bs-target="#editModal-5">Düzenle</button>
+            </label>
+            <label class="list-group-item">
+              <input class="form-check-input me-1" type="checkbox" value="">
+              Third checkbox
+              <button class="btn btn-danger delete-button">Sil</button>
+              <button class="btn btn-warning edit-button" data-bs-toggle="modal" data-bs-target="#editModal-6">Düzenle</button>
+            </label>
+            <label class="list-group-item">
+              <input class="form-check-input me-1" type="checkbox" value="">
+              Fourth checkbox
+              <button class="btn btn-danger delete-button">Sil</button>
+              <button class="btn btn-warning edit-button" data-bs-toggle="modal" data-bs-target="#editModal-7">Düzenle</button>
+            </label>
+            <label class="list-group-item">
+              <input class="form-check-input me-1" type="checkbox" value="">
+              Fifth checkbox
+              <button class="btn btn-danger delete-button">Sil</button>
+              <button class="btn btn-warning edit-button" data-bs-toggle="modal" data-bs-target="#editModal-8">Düzenle</button>
+            </label>
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- List Modal -->
+  <div class="modal fade" id="listModal" tabindex="-1" aria-labelledby="listModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="listModalLabel">Liste Ekle</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <input type="text" id="listNameInput" class="form-control" placeholder="Liste Adı">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+          <button type="button" class="btn btn-primary" id="addListButton">Ekle</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Modals -->
+  <!-- Edit Modal 1 -->
+  <div class="modal fade" id="editModal-1" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editModalLabel">Düzenle</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <input type="text" id="editNameInput-1" class="form-control" placeholder="Yeni Metin">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+          <button type="button" class="btn btn-primary save-edit-button">Kaydet</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Modal 2 -->
+  <div class="modal fade" id="editModal-2" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editModalLabel">Düzenle</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <input type="text" id="editNameInput-2" class="form-control" placeholder="Yeni Metin">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+          <button type="button" class="btn btn-primary save-edit-button">Kaydet</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Modal 3 -->
+  <div class="modal fade" id="editModal-3" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editModalLabel">Düzenle</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <input type="text" id="editNameInput-3" class="form-control" placeholder="Yeni Metin">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+          <button type="button" class="btn btn-primary save-edit-button">Kaydet</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Modal 4 -->
+  <div class="modal fade" id="editModal-4" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editModalLabel">Düzenle</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <input type="text" id="editNameInput-4" class="form-control" placeholder="Yeni Metin">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+          <button type="button" class="btn btn-primary save-edit-button">Kaydet</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Modal 5 -->
+  <div class="modal fade" id="editModal-5" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editModalLabel">Düzenle</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <input type="text" id="editNameInput-5" class="form-control" placeholder="Yeni Metin">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+          <button type="button" class="btn btn-primary save-edit-button">Kaydet</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Modal 6 -->
+  <div class="modal fade" id="editModal-6" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editModalLabel">Düzenle</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <input type="text" id="editNameInput-6" class="form-control" placeholder="Yeni Metin">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+          <button type="button" class="btn btn-primary save-edit-button">Kaydet</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Modal 7 -->
+  <div class="modal fade" id="editModal-7" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editModalLabel">Düzenle</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <input type="text" id="editNameInput-7" class="form-control" placeholder="Yeni Metin">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+          <button type="button" class="btn btn-primary save-edit-button">Kaydet</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- Edit Modal 8 -->
+  <div class="modal fade" id="editModal-8" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
+    <div class="modal-dialog">
+      <div class="modal-content">
+        <div class="modal-header">
+          <h5 class="modal-title" id="editModalLabel">Düzenle</h5>
+          <button type="button" class="btn-close" data-bs-dismiss="modal" aria-label="Close"></button>
+        </div>
+        <div class="modal-body">
+          <input type="text" id="editNameInput-8" class="form-control" placeholder="Yeni Metin">
+        </div>
+        <div class="modal-footer">
+          <button type="button" class="btn btn-secondary" data-bs-dismiss="modal">Kapat</button>
+          <button type="button" class="btn btn-primary save-edit-button">Kaydet</button>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.0/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const addListButton = document.getElementById('addListButton');
+      const listNameInput = document.getElementById('listNameInput');
+      const listGroup = document.getElementById('listGroup');
+
+      addListButton.addEventListener('click', function() {
+        const listName = listNameInput.value.trim();
+
+        if (listName !== '') {
+          const listItem = document.createElement('li');
+          listItem.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'align-items-start');
+          listItem.innerHTML = `
+            <div class="ms-2 me-auto">
+              ${listName}
+            </div>
+            <button class="btn btn-danger delete-button">Sil</button>
+            <button class="btn btn-warning edit-button" data-bs-toggle="modal" data-bs-target="#editModal-${listGroup.childElementCount + 1}">Düzenle</button>
+          `;
+
+          listGroup.appendChild(listItem);
+          listNameInput.value = '';
+
+          const deleteButton = listItem.querySelector('.delete-button');
+          deleteButton.addEventListener('click', function() {
+            listItem.remove();
+          });
+
+          const editButton = listItem.querySelector('.edit-button');
+          const editNameInput = document.getElementById(`editNameInput-${listGroup.childElementCount}`);
+          const saveEditButton = listItem.querySelector('.save-edit-button');
+
+          editButton.addEventListener('click', function() {
+            const itemText = listItem.querySelector('.ms-2');
+            editNameInput.value = itemText.innerText;
+          });
+
+          saveEditButton.addEventListener('click', function() {
+            const newName = editNameInput.value.trim();
+            if (newName !== '') {
+              const itemText = listItem.querySelector('.ms-2');
+              itemText.innerText = newName;
+              const editModal = bootstrap.Modal.getInstance(document.getElementById(`editModal-${listGroup.childElementCount}`));
+              editModal.hide();
+            }
+          });
+        }
+      });
+
+      const deleteButtons = document.querySelectorAll('.delete-button');
+      deleteButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+          const listItem = button.closest('.list-group-item');
+          listItem.remove();
+        });
+      });
+    });
+
+
+
+
+   
+
+
+  </script>
+</body>
+
+</html>
