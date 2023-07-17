@@ -46,10 +46,19 @@ app.get('/dbtest',(req, res)=>{
 
     connection.query(
       "SELECT * FROM todolist",
-      function (error, results, fields) {
-        if (error) throw error;
-        console.log(results);
-        res.send('<h1>Veri tabanı bağlantısı başarılıdır.</h1>')
+      // function (error, results, fields) {
+      //   if (error) throw error;
+      //   console.log(results);
+      //   //res.send('<h1>Veri tabanı bağlantısı başarılıdır.</h1><br/>' + results[0])
+      //   res.render('sample_data.ejs',{title:'Nodejs Mysql Connection Test', action:'list', sampleData:data})
+      // }
+
+      function(error, data){
+        if(error){
+          throw error;
+        }else{
+          res.render('sample_data.ejs', {title:'MySQL Nodejs Connection Test', sampleData:data})
+        }
       }
     );
 
