@@ -1,11 +1,189 @@
 <!DOCTYPE html>
 <html lang="en">
+
 <head>
-    <meta charset="UTF-8">
-    <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Document</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Document</title>
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.0/css/bootstrap.min.css" />
 </head>
+
 <body>
-    <h1 style="color: red;">Burası Hakkımızda Sayfasıdır.</h1>
+
+  <div class="container text-center">
+    <div class="row align-items-start">
+      <div class="col">
+        <div class="row container border">
+          <button class="btn btn-dark btn-block" data-bs-toggle="modal" data-bs-target="#listModal">Liste Ekle</button>
+          <div class="col-md-1">
+            <h1>Listeler</h1>
+          </div>
+          <div class="container">
+            <ol class="list-group list-group-numbered" id="listGroup">
+              <!-- Liste öğeleri buraya ekleniyor -->
+            </ol>
+          </div>
+        </div>
+      </div>
+
+      <div class="col">
+        <div class="row align-items-start">
+          <span class="text-start fw-bold">Liste Elemanları</span>
+        </div>
+        <div class="d-flex flex-row bd-highlight mb-3">
+          <input type="text" id="listItemInput" placeholder="Eleman Ekleyin" />
+          <button class="btn btn-primary" id="addItemButton" data-bs-toggle="modal" data-bs-target="#exampleModal">Eleman Ekle</button>
+        </div>
+        <div class="row align-items-start">
+          <div class="list-group row align-items-start" id="listItems">
+            <!-- Liste elemanları buraya ekleniyor -->
+          </div>
+        </div>
+      </div>
+    </div>
+  </div>
+
+  <!-- List Modal -->
+  <div class="modal fade" id="listModal" tabindex="-1" aria-labelledby="listModalLabel" aria-hidden="true">
+    <!-- Modal içeriği -->
+  </div>
+
+  <!-- Edit Modals -->
+  <!-- Düzenleme modalları buraya ekleniyor -->
+
+  <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.0/js/bootstrap.bundle.min.js"></script>
+  <script>
+    document.addEventListener('DOMContentLoaded', function() {
+      const addListButton = document.getElementById('addListButton');
+      const listNameInput = document.getElementById('listNameInput');
+      const listGroup = document.getElementById('listGroup');
+
+      addListButton.addEventListener('click', function() {
+        const listName = listNameInput.value.trim();
+
+        if (listName !== '') {
+          const listItem = document.createElement('li');
+          listItem.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'align-items-start');
+          listItem.innerHTML = `
+            <div class="ms-2 me-auto">
+              ${listName}
+            </div>
+            <button class="btn btn-danger delete-button">Sil</button>
+            <button class="btn btn-warning edit-button" data-bs-toggle="modal" data-bs-target="#editModal-${listGroup.childElementCount + 1}">Düzenle</button>
+          `;
+
+          listGroup.appendChild(listItem);
+          listNameInput.value = '';
+
+          const deleteButton = listItem.querySelector('.delete-button');
+          deleteButton.addEventListener('click', function() {
+            listItem.remove();
+            updateLocalStorage();
+          });
+
+          const editButton = listItem.querySelector('.edit-button');
+          const editNameInput = document.getElementById(`editNameInput-${listGroup.childElementCount}`);
+          const saveEditButton = listItem.querySelector('.save-edit-button');
+
+          editButton.addEventListener('click', function() {
+            const itemText = listItem.querySelector('.ms-2');
+            editNameInput.value = itemText.innerText;
+          });
+
+          saveEditButton.addEventListener('click', function() {
+            const newName = editNameInput.value.trim();
+            if (newName !== '') {
+              const itemText = listItem.querySelector('.ms-2');
+              itemText.innerText = newName;
+              const editModal = bootstrap.Modal.getInstance(document.getElementById(`editModal-${listGroup.childElementCount}`));
+              editModal.hide();
+              updateLocalStorage();
+            }
+          });
+        }
+      });
+
+      const deleteButtons = document.querySelectorAll('.delete-button');
+      deleteButtons.forEach(function(button) {
+        button.addEventListener('click', function() {
+          const listItem = button.closest('.list-group-item');
+          listItem.remove();
+          updateLocalStorage();
+        });
+      });
+
+      const addItemButton = document.getElementById('addItemButton');
+      const listItemInput = document.getElementById('listItemInput');
+      const listItems = document.getElementById('listItems');
+
+      addItemButton.addEventListener('click', function() {
+        const itemName = listItemInput.value.trim();
+        if (itemName !== '') {
+          const label = document.createElement('label');
+          label.classList.add('list-group-item');
+          label.innerHTML = `
+            <input class="form-check-input me-1" type="checkbox" value="">
+            ${itemName}
+            <button class="btn btn-danger delete-button">Sil</button>
+            <button class="btn btn-warning edit-button" data-bs-toggle="modal" data-bs-target="#editModal-${listItems.childElementCount + 1}">Düzenle</button>
+          `;
+          listItems.appendChild(label);
+          listItemInput.value = '';
+          updateLocalStorage();
+        }
+      });
+
+      const updateLocalStorage = () => {
+        const listItemsElements = document.querySelectorAll('.list-group-item .ms-2');
+        const listItems = [];
+        listItemsElements.forEach((item) => {
+          listItems.push(item.innerText.trim());
+        });
+        localStorage.setItem('listItems', JSON.stringify(listItems));
+      };
+
+      // Kayıtlı liste öğelerini local storage'dan al
+      const storedListItems = JSON.parse(localStorage.getItem('listItems')) || [];
+      storedListItems.forEach((item) => {
+        const listItem = document.createElement('li');
+        listItem.classList.add('list-group-item', 'd-flex', 'justify-content-between', 'align-items-start');
+        listItem.innerHTML = `
+          <div class="ms-2 me-auto">
+            ${item}
+          </div>
+          <button class="btn btn-danger delete-button">Sil</button>
+          <button class="btn btn-warning edit-button" data-bs-toggle="modal" data-bs-target="#editModal-${listGroup.childElementCount + 1}">Düzenle</button>
+        `;
+        listGroup.appendChild(listItem);
+
+        const deleteButton = listItem.querySelector('.delete-button');
+        deleteButton.addEventListener('click', function() {
+          listItem.remove();
+          updateLocalStorage();
+        });
+
+        const editButton = listItem.querySelector('.edit-button');
+        const editNameInput = document.getElementById(`editNameInput-${listGroup.childElementCount}`);
+        const saveEditButton = listItem.querySelector('.save-edit-button');
+
+        editButton.addEventListener('click', function() {
+          const itemText = listItem.querySelector('.ms-2');
+          editNameInput.value = itemText.innerText;
+        });
+
+        saveEditButton.addEventListener('click', function() {
+          const newName = editNameInput.value.trim();
+          if (newName !== '') {
+            const itemText = listItem.querySelector('.ms-2');
+            itemText.innerText = newName;
+            const editModal = bootstrap.Modal.getInstance(document.getElementById(`editModal-${listGroup.childElementCount}`));
+            editModal.hide();
+            updateLocalStorage();
+          }
+        });
+      });
+    });
+  </script>
 </body>
+
 </html>
