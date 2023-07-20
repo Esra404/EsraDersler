@@ -45,6 +45,7 @@
           </div>
         </div>
       </div>
+
       <div class="col">
         <div class="row align-items-start">
           <span class="text-start fw-bold">Liste Elemanları</span>
@@ -128,6 +129,10 @@
       </div>
     </div>
   </div>
+  <script>
+    let duzenle=document.getElementById("editNameInput-1");
+    let 
+  </script>
 
   <!-- Edit Modal 2 -->
   <div class="modal fade" id="editModal-2" tabindex="-1" aria-labelledby="editModalLabel" aria-hidden="true">
@@ -264,6 +269,7 @@
 
   <script src="https://cdnjs.cloudflare.com/ajax/libs/bootstrap/5.1.0/js/bootstrap.bundle.min.js"></script>
   <script>
+    //commit test
     document.addEventListener('DOMContentLoaded', function() {
       const addListButton = document.getElementById('addListButton');
       const listNameInput = document.getElementById('listNameInput');
@@ -321,7 +327,23 @@
       });
     });
 
+    const updateButon = document.querySelectorAll(".btn.btn-warning.edit-button");
+    const duzenleList;
+    updateButon.forEach(function(click){
+       let inputButon=document.querySelectorAll(".form-control");
+       inputButon.forEach(function(focus){
+      focus.addEventListener("click",function(){
+        duzenleList=focus.textContent;
 
+        
+      });
+          click.inputButon.textContent=duzenleList;
+       });
+
+    });
+    
+ 
+  
 
 
    
