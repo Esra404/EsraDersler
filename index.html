@@ -32,8 +32,17 @@
                   Cras justo odio
                 </div>
                 <button class="btn btn-danger delete-button">Sil</button>
-                <button class="btn btn-warning edit-button" data-bs-toggle="modal" data-bs-target="#editModal-2">Düzenle</button>
+                <button class="btn btn-warning edit-button"  data-bs-target="#editModal-2" >Düzenle</button>
+              
               </li>
+              <script>
+                let duzenleButton=documentquerySelector(".btn.btn-warning.edit-button")
+                duzenleButton.addEventListener("click",function(){
+                let duzenlebutoniki=document.getElementById("modal");
+                duzenlebutoniki.innerHTML="";
+                  duzenleButton.innerText="";
+                })
+              </script>
               <li class="list-group-item d-flex justify-content-between align-items-start">
                 <div class="ms-2 me-auto">
                   Cras justo odio
